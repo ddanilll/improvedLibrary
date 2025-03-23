@@ -1,5 +1,5 @@
 package com.example.entity
 
-sealed interface Shop<out T: Subject> {
+sealed interface Shop<T: Subject> {
     fun sell(): T
 }
