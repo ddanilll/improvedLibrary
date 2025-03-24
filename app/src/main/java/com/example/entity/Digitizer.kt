@@ -1,11 +1,11 @@
 package com.example.entity
 
-class Digitizer<in T : Subject> {
-    fun convert(item: T) {
-        when (item) {
-            is Book -> println("Оцифрованная книга: ${item.name}")
-            is Newspaper -> println("Оцифрованная газета: ${item.name} (${item.issueMonth.rusName})")
-            else -> println("Неподдерживаемый тип")
+open class Digitizer<T : Subject>{
+    open fun convert(item: T): Disk {
+        return when (item) {
+            is Book -> Disk(item.id, true, "Оцифрованная книга: ${item.name}", "CD")
+            is Newspaper -> Disk(item.id, true, "Оцифрованная газета: ${item.name} (${item.issueMonth.rusName})", "CD")
+            else -> throw IllegalArgumentException("Диск нельзя оцифровать")
         }
     }
 }

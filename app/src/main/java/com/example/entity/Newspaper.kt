@@ -9,7 +9,7 @@ class Newspaper(
         accessibility = false
     }
 
-    override fun printDetailedInfo(): String {
+    override fun printDetailedInfo(): String{
         return "выпуск: $issueNumber газеты $name за ${issueMonth.rusName} с id: $id доступен: ${if (accessibility) "Да" else "Нет"}"
     }
 }

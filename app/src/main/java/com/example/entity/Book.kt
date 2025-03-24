@@ -3,7 +3,7 @@ package com.example.entity
 class Book(
     id: Int, accessibility: Boolean, name: String, val pages: Int, val author: String
 ) : Subject(id, accessibility, name), HomeLendable, InLibraryUse {
-    override fun getTypeName(): String = "Книга"
+    override fun getTypeName(): String ="Книга"
     override fun takeHomeAction() {
         accessibility = false
     }

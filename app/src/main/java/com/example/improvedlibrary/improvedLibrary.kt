@@ -14,6 +14,9 @@ import com.example.entity.NewspaperShop
 import com.example.entity.Subject
 
 fun main() {
+    val digitizer: Digitizer<Subject> = Digitizer()
+    val bookDigitizer: Digitizer<Subject> = digitizer // каст работает
+
     val librarySubject = listOf(
         Book(1, true, "Маугли", 100, "Джозеф Киплинг"),
         Book(2, true, "Бесы", 1000, "Федор Достоевский"),
@@ -54,7 +57,6 @@ fun main() {
 }
 
 fun buying() {
-    val manager = Manager()
     println("Выберите тип магазина: 1-книги, 2-газеты, 3-диски")
     val shop = when (readlnOrNull()?.toIntOrNull()) {
         1 -> BookShop
@@ -63,13 +65,14 @@ fun buying() {
         else -> null
     }
     shop?.let {
-        val item = manager.buy(it)
+        val manager = Manager(shop)
+        val item = manager.buy()
         println("Куплен: ${item.getTypeName()}")
     }
 }
 
 inline fun <reified T> filterByType(items: List<Subject>): List<T> {
-    return items.filterIsInstance<T>()
+    return items.filter { it is T }.map { it as T }
 }
 
 fun showItems(items: List<Subject>) {
@@ -93,13 +96,29 @@ fun showActions(item: Subject) {
         println(
             "1. Взять домой\n" + "2. Читать в читальном зале\n" + "3. Показать подробную информацию\n" + "4. Вернуть\n" + "5. Оцифровать\n" + "6. Назад\n"
         )
-        val digitizer = Digitizer<Subject>()
         when (readlnOrNull()?.toIntOrNull()) {
             1 -> takeHome(item)
             2 -> readInHall(item)
             3 -> println(item.printDetailedInfo())
             4 -> returnItem(item)
-            5 -> digitizer.convert(item)
+            5 -> {
+                println("Выберите тип: 1-CD, 2-DVD")
+                when (readlnOrNull()?.toIntOrNull()) {
+                    1 -> {
+                        val digitizer = Digitizer<Subject>()
+                        try {
+                            val disk = digitizer.convert(item)
+                            println("Создан CD-диск: ${disk.name}")
+                        } catch (e: IllegalArgumentException) {
+                            println("Ошибка: ${e.message}")
+                        }
+                    }
+
+                    2 -> println("Пока у нас имеется возможность записывать только на CD диск, но планируем научится писать на DVD.")
+                    else -> println("Неправильный выбор. Пожалуйста, выберите снова.")
+                }
+            }
+
             6 -> return
             else -> println("Неправильный выбор. Пожалуйста, выберите снова.")
         }

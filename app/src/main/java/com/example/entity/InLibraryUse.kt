@@ -1,5 +1,5 @@
 package com.example.entity
 
-interface InLibraryUse {
+interface InLibraryUse{
     fun readInHallAction()
 }
