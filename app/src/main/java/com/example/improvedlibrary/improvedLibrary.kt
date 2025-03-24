@@ -2,7 +2,6 @@ package com.example.improvedlibrary
 
 import com.example.entity.Book
 import com.example.entity.BookShop
-import com.example.entity.DigitizableSub
 import com.example.entity.Digitizer
 import com.example.entity.Disk
 import com.example.entity.DiskShop
@@ -14,8 +13,10 @@ import com.example.entity.Newspaper
 import com.example.entity.NewspaperShop
 import com.example.entity.Subject
 
-
 fun main() {
+    val digitizer: Digitizer<Subject> = Digitizer()
+    val bookDigitizer: Digitizer<Subject> = digitizer //каст работает
+
     val librarySubject = listOf(
         Book(1, true, "Маугли", 100, "Джозеф Киплинг"),
         Book(2, true, "Бесы", 1000, "Федор Достоевский"),

@@ -2,7 +2,7 @@ package com.example.entity
 
 class Newspaper(
     id: Int, accessibility: Boolean, name: String, val issueNumber: Int, val issueMonth: Month
-) : Subject(id, accessibility, name), InLibraryUse, DigitizableSub {
+) : Subject(id, accessibility, name), InLibraryUse {
 
     override fun getTypeName(): String = "Газета"
     override fun readInHallAction() {
