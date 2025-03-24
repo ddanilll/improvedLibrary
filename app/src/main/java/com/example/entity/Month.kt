@@ -1,6 +1,6 @@
 package com.example.entity;
 
-enum class Month(val rusName: String) {
+enum class Month(val rusName: String){
     January("Январь"),
     February("Февраль"),
     March("Март"),

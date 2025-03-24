@@ -1,5 +1,5 @@
 package com.example.entity
 
-interface HomeLendable {
+interface HomeLendable{
     fun takeHomeAction()
 }

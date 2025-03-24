@@ -9,7 +9,7 @@ abstract class Subject(
         return "$name доступна: ${if (accessibility) "Да" else "Нет"}"
     }
 
-    open fun printDetailedInfo(): String {
+    open fun printDetailedInfo(): String{
         return ""
     }
 }

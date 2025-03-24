@@ -15,7 +15,7 @@ import com.example.entity.Subject
 
 fun main() {
     val digitizer: Digitizer<Subject> = Digitizer()
-    val bookDigitizer: Digitizer<Subject> = digitizer //каст работает
+    val bookDigitizer: Digitizer<Subject> = digitizer // каст работает
 
     val librarySubject = listOf(
         Book(1, true, "Маугли", 100, "Джозеф Киплинг"),

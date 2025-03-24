@@ -1,6 +1,6 @@
 package com.example.entity
 
-open class Digitizer<T : Subject> {
+open class Digitizer<T : Subject>{
     open fun convert(item: T): Disk {
         return when (item) {
             is Book -> Disk(item.id, true, "Оцифрованная книга: ${item.name}", "CD")
