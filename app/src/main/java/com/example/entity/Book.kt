@@ -2,7 +2,7 @@ package com.example.entity
 
 class Book(
     id: Int, accessibility: Boolean, name: String, val pages: Int, val author: String
-) : Subject(id, accessibility, name), HomeLendable, InLibraryUse {
+) : Subject(id, accessibility, name), HomeLendable, InLibraryUse, DigitizableSub {
     override fun getTypeName(): String = "Книга"
     override fun takeHomeAction() {
         accessibility = false
@@ -14,5 +14,9 @@ class Book(
 
     override fun printDetailedInfo(): String {
         return "книга: $name (${pages} стр.) автора: $author с id: $id доступна: ${if (accessibility) "Да" else "Нет"}"
+    }
+
+    override fun createDigitizableSub(): Disk {
+        return Disk(this.id,true,"Оцифрованная книга: ${this.name}", "CD")
     }
 }
