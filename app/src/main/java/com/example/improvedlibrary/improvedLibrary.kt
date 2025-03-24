@@ -2,6 +2,7 @@ package com.example.improvedlibrary
 
 import com.example.entity.Book
 import com.example.entity.BookShop
+import com.example.entity.DigitizableSub
 import com.example.entity.Digitizer
 import com.example.entity.Disk
 import com.example.entity.DiskShop
@@ -70,7 +71,7 @@ fun buying() {
 }
 
 inline fun <reified T> filterByType(items: List<Subject>): List<T> {
-    return items.filterIsInstance<T>()
+    return items.filter { it is T }.map { it as T }
 }
 
 fun showItems(items: List<Subject>) {
@@ -111,10 +112,12 @@ fun showActions(item: Subject) {
                             println("Ошибка: ${e.message}")
                         }
                     }
+
                     2 -> println("Пока у нас имеется возможность записывать только на CD диск, но планируем научится писать на DVD.")
                     else -> println("Неправильный выбор. Пожалуйста, выберите снова.")
                 }
             }
+
             6 -> return
             else -> println("Неправильный выбор. Пожалуйста, выберите снова.")
         }
