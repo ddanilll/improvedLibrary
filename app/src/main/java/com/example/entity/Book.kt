@@ -15,8 +15,4 @@ class Book(
     override fun printDetailedInfo(): String {
         return "книга: $name (${pages} стр.) автора: $author с id: $id доступна: ${if (accessibility) "Да" else "Нет"}"
     }
-
-    override fun createDigitizableSub(): Disk {
-        return Disk(this.id,true,"Оцифрованная книга: ${this.name}", "CD")
-    }
 }
